@@ -1,0 +1,84 @@
+name: Generate Project Index and Deploy Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate index.html
+        env:
+          GH_TOKEN: ${{ github.token }}
+          USERNAME: ${{ github.repository_owner }}
+        run: |
+          mkdir -p dist
+
+          repos_json=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/$USERNAME/repos?per_page=100&sort=updated")
+
+          cat > dist/index.html <<'EOF'
+          <!doctype html>
+          <html lang="zh-CN">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Projects</title>
+            <style>
+              body { font-family: system-ui, sans-serif; max-width: 900px; margin: 48px auto; padding: 0 20px; }
+              h1 { margin-bottom: 24px; }
+              .repo { padding: 16px 0; border-bottom: 1px solid #ddd; }
+              .repo a { font-size: 20px; font-weight: 700; text-decoration: none; }
+              .desc { margin-top: 6px; color: #555; }
+            </style>
+          </head>
+          <body>
+            <h1>Projects</h1>
+          EOF
+
+          echo "$repos_json" | jq -r '
+            .[]
+            | select(.name != "'"$USERNAME"'.github.io")
+            | select(.has_pages == true)
+            | "<div class=\"repo\"><a href=\"/\(.name)/\">\(.name)</a><div class=\"desc\">\(.description // "No description")</div></div>"
+          ' >> dist/index.html
+
+          cat >> dist/index.html <<'EOF'
+          </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static files
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
