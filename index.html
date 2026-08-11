@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="liooil 的公开项目索引：正在构建、部署并持续维护的实验与工具。">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f0c94b">
+  <meta property="og:title" content="liooil / projects">
+  <meta property="og:description" content="可直接访问的公开项目与实验。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://liooil.github.io/">
+  <title>liooil / projects</title>
+  <link rel="preconnect" href="https://avatars.githubusercontent.com">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/11557619?v=4" type="image/png">
+  <link rel="apple-touch-icon" href="https://avatars.githubusercontent.com/u/11557619?v=4">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="shell nav" aria-label="主导航">
+      <a class="brand" href="#top">liooil / projects</a>
+      <div class="nav-links">
+        <a href="#projects">项目</a>
+        <a href="https://xiteng.site">xiteng.site</a>
+        <a href="https://github.com/liooil" rel="me">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">PUBLIC PROJECT INDEX / GITHUB PAGES</p>
+        <h1 id="hero-title">作品，<br>保持在线。</h1>
+        <p class="intro">
+          这里收录可以直接打开的项目、实验和工具。每个条目都来自公开仓库，
+          并通过 GitHub Pages 持续部署。
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#projects">浏览全部项目</a>
+          <a class="button" href="https://github.com/liooil">查看 GitHub</a>
+        </div>
+      </div>
+
+      <aside class="profile-panel" aria-label="GitHub 项目概览">
+        <div class="profile-panel-head">
+          <span>GITHUB / LIOOIL</span>
+          <span class="live-dot" aria-hidden="true"></span>
+        </div>
+        <div class="profile-identity">
+          <img
+            class="profile-avatar"
+            src="https://avatars.githubusercontent.com/u/11557619?v=4"
+            alt="liooil 的 GitHub 头像"
+            width="88"
+            height="88"
+          >
+          <div>
+            <strong>liooil</strong>
+            <span>BUILDER / DEVELOPER</span>
+          </div>
+        </div>
+        <dl class="hero-stats">
+          <div>
+            <dt id="project-count">—</dt>
+            <dd>在线项目</dd>
+          </div>
+          <div>
+            <dt id="language-count">—</dt>
+            <dd>技术语言</dd>
+          </div>
+          <div>
+            <dt id="latest-year">—</dt>
+            <dd>最近更新</dd>
+          </div>
+        </dl>
+        <p id="catalog-updated" class="catalog-updated" aria-live="polite">正在读取项目目录…</p>
+      </aside>
+    </section>
+
+    <section class="principles" aria-label="项目索引说明">
+      <div class="shell principle-grid">
+        <article>
+          <span class="principle-number">01 / BUILD</span>
+          <strong>从想法到可用版本</strong>
+          <p>项目不是概念陈列，而是可以实际打开、运行和体验的成果。</p>
+        </article>
+        <article>
+          <span class="principle-number">02 / SHIP</span>
+          <strong>每次更新自动部署</strong>
+          <p>发布状态跟随 GitHub Pages，目录每天自动重新发现公开项目。</p>
+        </article>
+        <article>
+          <span class="principle-number">03 / OPEN</span>
+          <strong>实现过程保持公开</strong>
+          <p>每个项目同时提供成品入口与源码仓库，便于查看完整上下文。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="projects-section shell" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PROJECTS / LIVE BUILDS</p>
+          <h2 id="projects-title">可运行的项目</h2>
+        </div>
+        <p>持续部署的公开实验、工具与小型应用，按最近更新时间排列。</p>
+      </div>
+
+      <div id="filters" class="filters" role="group" aria-label="按主要语言筛选项目"></div>
+
+      <div id="project-catalog" class="project-grid" aria-live="polite" aria-busy="true">
+        <div class="loading-card">
+          <span>LOADING / PROJECT CATALOG</span>
+          <strong>正在发现公开项目…</strong>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="error-state">需要启用 JavaScript 才能读取项目目录。你仍可以前往 GitHub 查看全部仓库。</p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>liooil.github.io · <span id="year">2026</span></span>
+      <span>GitHub API → project index + Pages</span>
+    </div>
+  </footer>
+</body>
+</html>

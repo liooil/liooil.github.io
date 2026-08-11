@@ -28,48 +28,40 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate index.html
+      - name: Build project index
         env:
           GH_TOKEN: ${{ github.token }}
           USERNAME: ${{ github.repository_owner }}
         run: |
+          set -euo pipefail
           mkdir -p dist
+          cp index.html styles.css app.js dist/
+          touch dist/.nojekyll
 
-          repos_json=$(curl -s \
+          repos_json=$(curl --fail --retry 3 --silent --show-error \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/users/$USERNAME/repos?per_page=100&sort=updated")
 
-          cat > dist/index.html <<'EOF'
-          <!doctype html>
-          <html lang="zh-CN">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Projects</title>
-            <style>
-              body { font-family: system-ui, sans-serif; max-width: 900px; margin: 48px auto; padding: 0 20px; }
-              h1 { margin-bottom: 24px; }
-              .repo { padding: 16px 0; border-bottom: 1px solid #ddd; }
-              .repo a { font-size: 20px; font-weight: 700; text-decoration: none; }
-              .desc { margin-top: 6px; color: #555; }
-            </style>
-          </head>
-          <body>
-            <h1>Projects</h1>
-          EOF
-
-          echo "$repos_json" | jq -r '
-            .[]
-            | select(.name != "'"$USERNAME"'.github.io")
-            | select(.has_pages == true)
-            | "<div class=\"repo\"><a href=\"/\(.name)/\">\(.name)</a><div class=\"desc\">\(.description // "No description")</div></div>"
-          ' >> dist/index.html
-
-          cat >> dist/index.html <<'EOF'
-          </body>
-          </html>
-          EOF
+          jq \
+            --arg generated_at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg username "$USERNAME" \
+            '{
+              generated_at: $generated_at,
+              projects: [
+                .[]
+                | select(.name != ($username + ".github.io"))
+                | select(.has_pages == true)
+                | {
+                    name,
+                    description: (.description // "暂无描述。"),
+                    language: (.language // "Web"),
+                    page_url: ("https://" + $username + ".github.io/" + .name + "/"),
+                    html_url,
+                    updated_at
+                  }
+              ]
+            }' <<< "$repos_json" > dist/projects.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

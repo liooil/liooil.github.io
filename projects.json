@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-08-11T13:08:46Z",
+  "projects": [
+    {
+      "name": "opus-weave",
+      "description": "From idea to score to performance. 从构思，到乐谱，到演奏。",
+      "language": "TypeScript",
+      "page_url": "https://liooil.github.io/opus-weave/",
+      "html_url": "https://github.com/liooil/opus-weave",
+      "updated_at": "2026-08-11T12:35:00Z"
+    },
+    {
+      "name": "poly",
+      "description": "Single-process Bun + RustPython polyglot runtime prototype",
+      "language": "Rust",
+      "page_url": "https://liooil.github.io/poly/",
+      "html_url": "https://github.com/liooil/poly",
+      "updated_at": "2026-08-10T00:55:18Z"
+    },
+    {
+      "name": "silidox",
+      "description": "Silidox: Path of Code Alchemy",
+      "language": "JavaScript",
+      "page_url": "https://liooil.github.io/silidox/",
+      "html_url": "https://github.com/liooil/silidox",
+      "updated_at": "2026-08-09T12:23:45Z"
+    },
+    {
+      "name": "void",
+      "description": "WebGPU desktop companion for Codex and Claude agents",
+      "language": "TypeScript",
+      "page_url": "https://liooil.github.io/void/",
+      "html_url": "https://github.com/liooil/void",
+      "updated_at": "2026-08-06T09:35:05Z"
+    },
+    {
+      "name": "webapp-shortcut",
+      "description": "Create Windows desktop web-app shortcuts with Bun: automatic naming and icons, ICO conversion, and Edge/Chrome app mode. Zero npm dependencies.",
+      "language": "TypeScript",
+      "page_url": "https://liooil.github.io/webapp-shortcut/",
+      "html_url": "https://github.com/liooil/webapp-shortcut",
+      "updated_at": "2026-07-14T02:07:12Z"
+    },
+    {
+      "name": "cat_game",
+      "description": "暂无描述。",
+      "language": "JavaScript",
+      "page_url": "https://liooil.github.io/cat_game/",
+      "html_url": "https://github.com/liooil/cat_game",
+      "updated_at": "2026-04-27T10:21:45Z"
+    },
+    {
+      "name": "grid-cut",
+      "description": "Tool for cut AI-generated image to tiles",
+      "language": "TypeScript",
+      "page_url": "https://liooil.github.io/grid-cut/",
+      "html_url": "https://github.com/liooil/grid-cut",
+      "updated_at": "2026-04-24T07:45:27Z"
+    }
+  ]
+}
